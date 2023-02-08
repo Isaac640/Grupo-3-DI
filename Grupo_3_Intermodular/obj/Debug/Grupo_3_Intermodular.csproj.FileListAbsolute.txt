@@ -9,3 +9,4 @@ C:\Codigo\Grupo_3_Intermodular\Grupo_3_Intermodular\obj\Debug\Grupo_3_Intermodul
 C:\Codigo\Grupo_3_Intermodular\Grupo_3_Intermodular\obj\Debug\Grupo_3_Intermodular.csproj.CoreCompileInputs.cache
 C:\Codigo\Grupo_3_Intermodular\Grupo_3_Intermodular\obj\Debug\Grupo_3_Intermodular.exe
 C:\Codigo\Grupo_3_Intermodular\Grupo_3_Intermodular\obj\Debug\Grupo_3_Intermodular.pdb
+C:\Codigo\Grupo_3_Intermodular\Grupo_3_Intermodular\obj\Debug\Grupo_3_Intermodular.FrmTest.resources

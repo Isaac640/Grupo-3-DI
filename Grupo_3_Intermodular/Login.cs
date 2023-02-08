@@ -13,40 +13,42 @@ namespace Grupo_3_Intermodular
 {
     public partial class FrmLogin : Form
     {
+        string usu = "isaac";
+        string con = "1234";
         public FrmLogin()
         {
             InitializeComponent();
-            //Centrar la ventana a la pantalla
+            //Centrar la ventana a la pantalla al iniciar la aplicaciòn
             this.StartPosition = FormStartPosition.CenterScreen;
-        }
-
-        private void FrmLogin_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void btnIniciarSesion_Click(object sender, EventArgs e)
         {
-            //Si alguno del los campos estan vacios, se mostrara un MensajeBox diciendolo
+            //Si alguno del los campos estan vacios, se mostrara un MensajeBox mencionandolo
             if (string.IsNullOrEmpty(txtUsuario.Text) || string.IsNullOrEmpty(txtContrasenia.Text))
             {
-                MessageBox.Show("Uno de los campos esta vacio", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Uno de los campos esta vacío", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            if (verificacionUsuario() == true)
+
+            if (verificarUsuario() == true)
             {
-                Application.Exit();
+                //Si va, tira la API y avanza al siguiente formulario, y cierra la ventana de login
+                //la siguiente ventana sera el listado de profesores SOLO ADMINS PUEDEN ACCEDER
+                
+                //FrmTest test = new FrmTest();
+                //test.Show();
+
+                this.Close();
             }
 
         }
 
-        public bool verificacionUsuario()
+        public bool verificarUsuario()
         {
             bool valido = false;
-            string usu = "isaac";
-            string con = "1234";
 
             //Si el usuario y contraseña coinciden se pondra a true
-            //Si no Mostrará un texto di que es incorrecto
+            //Si no, mostrará un texto di que es incorrecto
             if (txtUsuario.Text.Equals(usu) && txtContrasenia.Text.Equals(con))
             {
                 valido = true;
