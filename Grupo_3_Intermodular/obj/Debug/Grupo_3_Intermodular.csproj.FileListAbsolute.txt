@@ -1,0 +1,12 @@
+C:\Users\Alumno\Desktop\Grupo3_Intermodular\Grupo-3-DI\Grupo_3_Intermodular\bin\Debug\Grupo_3_Intermodular.exe.config
+C:\Users\Alumno\Desktop\Grupo3_Intermodular\Grupo-3-DI\Grupo_3_Intermodular\bin\Debug\Grupo_3_Intermodular.exe
+C:\Users\Alumno\Desktop\Grupo3_Intermodular\Grupo-3-DI\Grupo_3_Intermodular\bin\Debug\Grupo_3_Intermodular.pdb
+C:\Users\Alumno\Desktop\Grupo3_Intermodular\Grupo-3-DI\Grupo_3_Intermodular\obj\Debug\Grupo_3_Intermodular.csproj.AssemblyReference.cache
+C:\Users\Alumno\Desktop\Grupo3_Intermodular\Grupo-3-DI\Grupo_3_Intermodular\obj\Debug\Grupo_3_Intermodular.csproj.SuggestedBindingRedirects.cache
+C:\Users\Alumno\Desktop\Grupo3_Intermodular\Grupo-3-DI\Grupo_3_Intermodular\obj\Debug\Grupo_3_Intermodular.FrmGuardia.resources
+C:\Users\Alumno\Desktop\Grupo3_Intermodular\Grupo-3-DI\Grupo_3_Intermodular\obj\Debug\Grupo_3_Intermodular.Properties.Resources.resources
+C:\Users\Alumno\Desktop\Grupo3_Intermodular\Grupo-3-DI\Grupo_3_Intermodular\obj\Debug\Grupo_3_Intermodular.csproj.GenerateResource.cache
+C:\Users\Alumno\Desktop\Grupo3_Intermodular\Grupo-3-DI\Grupo_3_Intermodular\obj\Debug\Grupo_3_Intermodular.csproj.CoreCompileInputs.cache
+C:\Users\Alumno\Desktop\Grupo3_Intermodular\Grupo-3-DI\Grupo_3_Intermodular\obj\Debug\Grupo_3_Intermodular.exe
+C:\Users\Alumno\Desktop\Grupo3_Intermodular\Grupo-3-DI\Grupo_3_Intermodular\obj\Debug\Grupo_3_Intermodular.pdb
+C:\Users\Alumno\Desktop\Grupo3_Intermodular\Grupo-3-DI\Grupo_3_Intermodular\obj\Debug\Grupo_3_Intermodular.FrmBuscarProfesor.resources
