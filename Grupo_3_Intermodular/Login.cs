@@ -35,8 +35,8 @@ namespace Grupo_3_Intermodular
                 //Si va, tira la API y avanza al siguiente formulario, y cierra la ventana de login
                 //la siguiente ventana sera el listado de profesores SOLO ADMINS PUEDEN ACCEDER
                 
-                //FrmTest test = new FrmTest();
-                //test.Show();
+                MantenimientoGuardias mGuardias = new MantenimientoGuardias();
+                mGuardias.Show();
 
                 this.Close();
             }
@@ -49,7 +49,7 @@ namespace Grupo_3_Intermodular
 
             //Si el usuario y contraseña coinciden se pondra a true
             //Si no, mostrará un texto di que es incorrecto
-            if (txtUsuario.Text.Equals(usu) && txtContrasenia.Text.Equals(con))
+            if (txtUsuario.Text.ToLower().Equals(usu) && txtContrasenia.Text.Equals(con))
             {
                 valido = true;
             }
