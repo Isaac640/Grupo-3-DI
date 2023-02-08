@@ -16,7 +16,25 @@ namespace Grupo_3_Intermodular
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            FrmLogin login = new FrmLogin();
+            login.FormClosed += FrmLogin_Closed;
+            login.Show();
+            Application.Run();
+        }
+
+        //Aquí si no encuentra forms abiertos, cierra las ventanas
+        private static void FrmLogin_Closed(object sender, FormClosedEventArgs e)
+        {
+            ((Form)sender).FormClosed -= FrmLogin_Closed;
+
+            if (Application.OpenForms.Count == 0)
+            {
+                Application.ExitThread();
+                return;
+            }
+
+            Application.OpenForms[0].FormClosed += FrmLogin_Closed;
+
         }
     }
 }

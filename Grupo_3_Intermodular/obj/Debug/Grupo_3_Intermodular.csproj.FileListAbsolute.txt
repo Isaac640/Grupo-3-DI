@@ -1,0 +1,12 @@
+C:\Codigo\Grupo_3_Intermodular\Grupo_3_Intermodular\bin\Debug\Grupo_3_Intermodular.exe.config
+C:\Codigo\Grupo_3_Intermodular\Grupo_3_Intermodular\bin\Debug\Grupo_3_Intermodular.exe
+C:\Codigo\Grupo_3_Intermodular\Grupo_3_Intermodular\bin\Debug\Grupo_3_Intermodular.pdb
+C:\Codigo\Grupo_3_Intermodular\Grupo_3_Intermodular\obj\Debug\Grupo_3_Intermodular.csproj.AssemblyReference.cache
+C:\Codigo\Grupo_3_Intermodular\Grupo_3_Intermodular\obj\Debug\Grupo_3_Intermodular.csproj.SuggestedBindingRedirects.cache
+C:\Codigo\Grupo_3_Intermodular\Grupo_3_Intermodular\obj\Debug\Grupo_3_Intermodular.FrmLogin.resources
+C:\Codigo\Grupo_3_Intermodular\Grupo_3_Intermodular\obj\Debug\Grupo_3_Intermodular.Properties.Resources.resources
+C:\Codigo\Grupo_3_Intermodular\Grupo_3_Intermodular\obj\Debug\Grupo_3_Intermodular.csproj.GenerateResource.cache
+C:\Codigo\Grupo_3_Intermodular\Grupo_3_Intermodular\obj\Debug\Grupo_3_Intermodular.csproj.CoreCompileInputs.cache
+C:\Codigo\Grupo_3_Intermodular\Grupo_3_Intermodular\obj\Debug\Grupo_3_Intermodular.exe
+C:\Codigo\Grupo_3_Intermodular\Grupo_3_Intermodular\obj\Debug\Grupo_3_Intermodular.pdb
+C:\Codigo\Grupo_3_Intermodular\Grupo_3_Intermodular\obj\Debug\Grupo_3_Intermodular.FrmTest.resources
