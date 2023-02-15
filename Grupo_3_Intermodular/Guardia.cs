@@ -12,7 +12,7 @@ namespace Grupo_3_Intermodular
         public int id { get; }
         public int prof_falta { get; set; }
         public int prof_hace_guardia { get; set; }
-        public estado estado { get; set; }
+        public Estado estado { get; set; }
         public DateTime fecha { get; set; }
         public int horario { get; set; }
         public int dia_semana { get; set; }
@@ -24,7 +24,7 @@ namespace Grupo_3_Intermodular
 
     }
 
-    public enum estado
+    public enum Estado
     {
         R,
         C,

@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContenedorMDI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ContenedorMDI.Designer.cs">
+      <DependentUpon>ContenedorMDI.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmBuscarProfesor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,9 +78,13 @@
     <Compile Include="MantenimientoGuardias.Designer.cs">
       <DependentUpon>MantenimientoGuardias.cs</DependentUpon>
     </Compile>
+    <Compile Include="Negocio.cs" />
     <Compile Include="Profesor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ContenedorMDI.resx">
+      <DependentUpon>ContenedorMDI.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmBuscarProfesor.resx">
       <DependentUpon>FrmBuscarProfesor.cs</DependentUpon>
     </EmbeddedResource>

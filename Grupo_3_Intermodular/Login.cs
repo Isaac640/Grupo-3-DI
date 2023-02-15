@@ -35,8 +35,8 @@ namespace Grupo_3_Intermodular
                 //Si va, tira la API y avanza al siguiente formulario, y cierra la ventana de login
                 //la siguiente ventana sera el listado de profesores SOLO ADMINS PUEDEN ACCEDER
                 
-                MantenimientoGuardias mGuardias = new MantenimientoGuardias();
-                mGuardias.Show();
+                ContenedorMDI mdi = new ContenedorMDI();
+                mdi.Show();
 
                 this.Close();
             }
@@ -57,7 +57,7 @@ namespace Grupo_3_Intermodular
             {
                 lblError.Text = "El Usuario o Contraseña son incorrectos";
             }
-
+            valido = true; //ACORDARSE DE QUITAR ESTO MUY IMPORTANTE
             return valido;
         }
     }

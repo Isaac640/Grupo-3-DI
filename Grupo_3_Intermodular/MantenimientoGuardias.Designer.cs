@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MantenimientoGuardias));
             this.txtFiltro = new System.Windows.Forms.TextBox();
             this.btnFiltrar = new System.Windows.Forms.Button();
             this.btnNueva = new System.Windows.Forms.Button();
@@ -39,6 +41,11 @@
             this.chEstado = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lblFiltro = new System.Windows.Forms.Label();
             this.lblRegistros = new System.Windows.Forms.Label();
+            this.cmsGuardias = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiNueva = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiEliminar = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiModificar = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsGuardias.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtFiltro
@@ -76,6 +83,7 @@
             this.chProfFalta,
             this.chProfSusti,
             this.chEstado});
+            this.lvGuardias.ContextMenuStrip = this.cmsGuardias;
             this.lvGuardias.GridLines = true;
             this.lvGuardias.HideSelection = false;
             this.lvGuardias.Location = new System.Drawing.Point(12, 49);
@@ -129,6 +137,37 @@
             this.lblRegistros.TabIndex = 5;
             this.lblRegistros.Text = "6 registros";
             // 
+            // cmsGuardias
+            // 
+            this.cmsGuardias.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiNueva,
+            this.tsmiModificar,
+            this.tsmiEliminar});
+            this.cmsGuardias.Name = "cmsGuardias";
+            this.cmsGuardias.Size = new System.Drawing.Size(126, 70);
+            this.cmsGuardias.Opening += new System.ComponentModel.CancelEventHandler(this.cmsGuardias_Opening);
+            // 
+            // tsmiNueva
+            // 
+            this.tsmiNueva.Name = "tsmiNueva";
+            this.tsmiNueva.Size = new System.Drawing.Size(180, 22);
+            this.tsmiNueva.Text = "Nueva";
+            this.tsmiNueva.Click += new System.EventHandler(this.tsmiNueva_Click);
+            // 
+            // tsmiEliminar
+            // 
+            this.tsmiEliminar.Name = "tsmiEliminar";
+            this.tsmiEliminar.Size = new System.Drawing.Size(180, 22);
+            this.tsmiEliminar.Text = "Eliminar";
+            this.tsmiEliminar.Click += new System.EventHandler(this.tsmiEliminar_Click);
+            // 
+            // tsmiModificar
+            // 
+            this.tsmiModificar.Name = "tsmiModificar";
+            this.tsmiModificar.Size = new System.Drawing.Size(180, 22);
+            this.tsmiModificar.Text = "Modificar";
+            this.tsmiModificar.Click += new System.EventHandler(this.tsmiModificar_Click);
+            // 
             // MantenimientoGuardias
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -140,8 +179,10 @@
             this.Controls.Add(this.btnNueva);
             this.Controls.Add(this.btnFiltrar);
             this.Controls.Add(this.txtFiltro);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MantenimientoGuardias";
             this.Text = " Mantenimiento guardias";
+            this.cmsGuardias.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -160,5 +201,9 @@
         private System.Windows.Forms.ColumnHeader chEstado;
         private System.Windows.Forms.Label lblFiltro;
         private System.Windows.Forms.Label lblRegistros;
+        private System.Windows.Forms.ContextMenuStrip cmsGuardias;
+        private System.Windows.Forms.ToolStripMenuItem tsmiNueva;
+        private System.Windows.Forms.ToolStripMenuItem tsmiModificar;
+        private System.Windows.Forms.ToolStripMenuItem tsmiEliminar;
     }
 }

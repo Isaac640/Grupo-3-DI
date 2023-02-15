@@ -12,11 +12,16 @@ namespace Grupo_3_Intermodular
 {
     public partial class FrmGuardia : Form
     {
-        //Guardia guardia;
-        public FrmGuardia() //Objeto guardia en contructor
+        public Guardia guardia { get; }
+        private Profesor profAus = new Profesor();
+        private Profesor profSus = new Profesor();
+        public FrmGuardia(Guardia guardia)
         {
             InitializeComponent();
-            //this.guardia=guardia
+            if (guardia!=null)
+            {
+                rellenarCampos(guardia);
+            }
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -26,20 +31,23 @@ namespace Grupo_3_Intermodular
 
         private void btnExaminarAusente_Click(object sender, EventArgs e)
         {
-            FrmBuscarProfesor prfAusente = new FrmBuscarProfesor();
-            if (prfAusente.ShowDialog()==DialogResult.OK) //Meter profesor por contructor
+
+            FrmBuscarProfesor profAusente = new FrmBuscarProfesor();
+            if (profAusente.ShowDialog() == DialogResult.OK)
             {
-                
-                //txtAusente.Text=profAus.getNombre()+prof.getApellido1()+ prof.getApellido2
+                profAus = Negocio.ObtenerProfesor(profAusente.profesorId); //Negocio
+                txtAusente.Text = profAus.nombre + " " + profAus.ape1 + " " + profAus.ape2;
             }
         }
 
         private void btnExaminarSustituto_Click(object sender, EventArgs e)
         {
-            FrmBuscarProfesor prfSustituto = new FrmBuscarProfesor();
-            if (prfSustituto.ShowDialog() == DialogResult.OK)
+
+            FrmBuscarProfesor profSustituto = new FrmBuscarProfesor();
+            if (profSustituto.ShowDialog() == DialogResult.OK)
             {
-                //txtSustituto.Text=profSus.getNombre()+prof.getApellido1()+ prof.getApellido2
+                profSus = Negocio.ObtenerProfesor(profSustituto.profesorId); //Negocio
+                txtSustituto.Text = profSus.nombre + " " + profSus.ape1 + " " + profSus.ape2;
             }
         }
 
@@ -47,16 +55,16 @@ namespace Grupo_3_Intermodular
         {
             if (comprobarCampos())
             {
-                //guardia.ProfesorAusente=profAus;
-                //guardia.ProfesorSustituto=profSus;
-                //guardia.Fecha=dtpFecha.Text;
-                //guardia.Hora=cbHora.SelectedItem.Text;
-                //guardia.Aula=cbAula.SelectedItem.Text;
-                //guardia.Grupo=cbGrupo.SelectedItem.Text;
-                //guardia.Observaciones=txtObservaciones.Text;
-                //if(rbtnRealizada.isSelected) guardia.Estado=Realizada;
-                //if(rbtnPendiente.isSelected) guardia.Estado=Pendiente;
-                //if(rbtnAnulada.isSelected) guardia.Estado=Anulada;
+                guardia.prof_falta = profAus.id;
+                guardia.prof_hace_guardia = profSus.id;
+                guardia.fecha = dtpFecha.Value;
+                guardia.hora = int.Parse(cbHoras.SelectedItem.ToString());
+                guardia.aula = cbAula.SelectedItem.ToString();
+                guardia.grupo = cbGrupo.SelectedItem.ToString();
+                guardia.observaciones = txtObservaciones.Text;
+                if (rbtnRealizada.Checked) guardia.estado = Estado.R;
+                if (rbtnConfirmada.Checked) guardia.estado = Estado.C;
+                if (rbtnAnulada.Checked) guardia.estado = Estado.A;
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
@@ -96,7 +104,7 @@ namespace Grupo_3_Intermodular
                 mostrarAviso("Debes escoger un grupo");
                 return false;
             }
-            if (rbtnAnulada.Checked==false && rbtnConfirmada.Checked==false && rbtnRealizada.Checked==false)
+            if (rbtnAnulada.Checked == false && rbtnConfirmada.Checked == false && rbtnRealizada.Checked == false)
             {
                 mostrarAviso("Debes escoger un estado");
                 return false;
@@ -109,6 +117,42 @@ namespace Grupo_3_Intermodular
             MessageBox.Show(aviso, "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Hand);
         }
 
-        
+        private void rellenarCampos(Guardia guardia)
+        {
+            profAus = Negocio.ObtenerProfesor(guardia.prof_falta);
+            txtAusente.Text=profAus.nombre + " " + profAus.ape1 + " " + profAus.ape2;
+            if (guardia.prof_hace_guardia != 0)
+            {
+                profSus = Negocio.ObtenerProfesor(guardia.prof_hace_guardia);
+                txtSustituto.Text = profSus.nombre + " " + profSus.ape1 + " " + profSus.ape2;
+            }
+            dtpFecha.Value = guardia.fecha;
+            cbHoras.SelectedText = guardia.hora.ToString();
+            if (guardia.aula!=null)
+            {
+                cbAula.SelectedText = guardia.aula;
+            }
+            if (guardia.grupo!=null)
+            {
+                cbGrupo.SelectedText = guardia.grupo;
+            }
+            if (guardia.observaciones!=null)
+            {
+                txtObservaciones.Text = guardia.observaciones;
+            }
+            switch (guardia.estado)
+            {
+                case Estado.R:
+                    rbtnRealizada.Checked = true;
+                    break;
+                case Estado.C:
+                    rbtnConfirmada.Checked = true;
+                    break;
+                case Estado.A:
+                    rbtnAnulada.Checked = true;
+                    break;
+            }
+        }
+
     }
 }

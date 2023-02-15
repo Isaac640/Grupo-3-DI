@@ -12,48 +12,54 @@ namespace Grupo_3_Intermodular
 {
     public partial class FrmBuscarProfesor : Form
     {
-        //Profesor prof;
-        public FrmBuscarProfesor()//Profesor prof
+        public int profesorId { get; set; } //Habria que buscar como quitar el set
+        public FrmBuscarProfesor()
         {
-            
+
             InitializeComponent();
-            //this.prof = prof;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            DialogResult= DialogResult.Cancel;
+            DialogResult = DialogResult.Cancel;
         }
 
 
         private void btnDni_Click(object sender, EventArgs e)
         {
-            for(; ; )//Comprobar si lo escrito en txt coincide con el DNI de algun profesor
+            lvProfesores.Items.Clear();
+            foreach (Profesor p in Negocio.ObtenerProfesores())
             {
-                if (true) //p.DNI.Contains(txtBuscar.Text)
+                if (p.dni.Contains(txtBuscar.Text))
                 {
-                    //ListViewItem lviProf;
-                    //lviProf.Column[0] = p.DNI;
-                    //lviProf.Column[1] = p.Nombre;
-                    //lviProf.Column[2] = p.Apellido1;
-                    //lviProf.Column[3] = p.Apellido2;
-                    //lvLista.add(lviProf);
+
+                    string[] profesor = new string[4];
+                    profesor[0] = p.dni;
+                    profesor[1] = p.nombre;
+                    profesor[2] = p.ape1;
+                    profesor[3] = p.ape2;
+                    ListViewItem lviProf = new ListViewItem(profesor);
+                    lviProf.Tag = p.id;
+                    lvProfesores.Items.Add(lviProf);
                 }
             }
         }
 
         private void btnNombre_Click(object sender, EventArgs e)
         {
-            for (; ; )//Comprobar si lo escrito en txt coincide con el Nombre de algun profesor
+            lvProfesores.Items.Clear();
+            foreach (Profesor p in Negocio.ObtenerProfesores())
             {
-                if (true) //p.nombre.Contains(txtBuscar.Text)
+                if (p.nombre.Contains(txtBuscar.Text) || p.ape1.Contains(txtBuscar.Text) || p.ape2.Contains(txtBuscar.Text))
                 {
-                    //ListViewItem lviProf;
-                    //lviProf.Column[0] = p.DNI;
-                    //lviProf.Column[1] = p.Nombre;
-                    //lviProf.Column[2] = p.Apellido1;
-                    //lviProf.Column[3] = p.Apellido2;
-                    //lvLista.add(lviProf);
+                    string[] profesor = new string[4];
+                    profesor[0] = p.dni;
+                    profesor[1] = p.nombre;
+                    profesor[2] = p.ape1;
+                    profesor[3] = p.ape2;
+                    ListViewItem lviProf = new ListViewItem(profesor);
+                    lviProf.Tag = p.id;
+                    lvProfesores.Items.Add(lviProf);
                 }
             }
         }
@@ -65,7 +71,7 @@ namespace Grupo_3_Intermodular
             //localhost/api/profesor/nombre/Manolo : Profesor
 
             //Profesor p;
-            //Arraylist<Profesor> profesores;
+            //List<Profesor> profesores;
             //Query pidiendo Id, DNI, Nombre, Apellido 1 y Apellido 2
             //for("yo que se bro, lo que salga de la query")
             //{
@@ -78,12 +84,13 @@ namespace Grupo_3_Intermodular
             //  profesores.add(p)
             //}
             //
-            //return profesores.toArray()
+            //return profesores;
         }
 
         private void lvProfesores_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             //prof =//localhost/api/profesor/id/( lvProfesores.SelectedItems[0].Tag.ToString() ) : Profesor
+            profesorId = int.Parse(lvProfesores.SelectedItems[0].Tag.ToString());
             this.DialogResult = DialogResult.OK;
             this.Close();
         }

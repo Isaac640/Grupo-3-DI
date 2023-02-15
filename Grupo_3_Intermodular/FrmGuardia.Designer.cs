@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmGuardia));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -127,17 +128,17 @@
             // 
             // txtAusente
             // 
-            this.txtAusente.Enabled = false;
             this.txtAusente.Location = new System.Drawing.Point(110, 13);
             this.txtAusente.Name = "txtAusente";
+            this.txtAusente.ReadOnly = true;
             this.txtAusente.Size = new System.Drawing.Size(210, 20);
             this.txtAusente.TabIndex = 8;
             // 
             // txtSustituto
             // 
-            this.txtSustituto.Enabled = false;
             this.txtSustituto.Location = new System.Drawing.Point(491, 10);
             this.txtSustituto.Name = "txtSustituto";
+            this.txtSustituto.ReadOnly = true;
             this.txtSustituto.Size = new System.Drawing.Size(186, 20);
             this.txtSustituto.TabIndex = 11;
             // 
@@ -334,6 +335,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmGuardia";
             this.Text = "Modificar guardia";
             this.ResumeLayout(false);

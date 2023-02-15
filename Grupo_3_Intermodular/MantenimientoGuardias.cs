@@ -21,6 +21,14 @@ namespace Grupo_3_Intermodular
 
         private void cargarDatos()
         {
+            //traer datos de la API
+            //Meto esos datos de alguna manera (?) en un array de guardias
+            //foreach (Guardia x in guardias)
+            //{
+                ListViewItem lviGuardia = new ListViewItem();
+                
+            //}
+
             actualizarRegistro();
         }
 
@@ -37,18 +45,89 @@ namespace Grupo_3_Intermodular
             string filtro = txtFiltro.Text;
             if (string.IsNullOrEmpty(filtro)) {
                 lblFiltro.Text = "Sin filtro";
+                actualizarRegistro();
                 return;
             }
 
-            lblFiltro.Text = $"Filtrado por {filtro}";            
+            lblFiltro.Text = $"Filtrado por {filtro}";
+            actualizarRegistro();
+
 
             return;
         }
 
         private void btnNueva_Click(object sender, EventArgs e)
         {
-            FrmGuardia fGuardia = new FrmGuardia();
-            fGuardia.ShowDialog();
+            crearGuardia();
+        }
+
+        private void cmsGuardias_Opening(object sender, CancelEventArgs e)
+        {
+            this.tsmiModificar.Enabled = false;
+            this.tsmiEliminar.Enabled = false;
+
+            if (this.lvGuardias.SelectedItems.Count == 1)
+            {
+                this.tsmiModificar.Enabled = true;
+                this.tsmiEliminar.Enabled = true;
+            }
+        }
+
+        private void tsmiNueva_Click(object sender, EventArgs e)
+        {
+            crearGuardia();
+        }
+
+        private void tsmiModificar_Click(object sender, EventArgs e)
+        {
+            modificarGuardia();
+        }
+
+        private void tsmiEliminar_Click(object sender, EventArgs e)
+        {
+            eliminarGuardia();
+        }
+
+        private void crearGuardia()
+        {
+            Guardia guardia = new Guardia();
+            FrmGuardia fGuardia = new FrmGuardia(guardia);
+            if (fGuardia.ShowDialog() == DialogResult.OK)
+            {
+                cargarGuardia(fGuardia.guardia);
+            }
+        }
+        private void modificarGuardia()
+        {
+            ; //Recupero el objeto guardia según el tag y se lo enchufo al propiedades
+            Guardia guardia = Negocio.ObtenerGuardia(int.Parse(lvGuardias.SelectedItems[0].Tag.ToString()));
+            FrmGuardia fGuardia = new FrmGuardia(guardia);
+            if (fGuardia.ShowDialog() == DialogResult.OK)
+            {
+                
+                cargarGuardia(fGuardia.guardia);
+            }
+        }
+        private void eliminarGuardia()
+        {
+            string message = "¿Desea eliminar la guardia?";
+            string caption = "Eliminar guardia";
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+            DialogResult result;
+
+            result = MessageBox.Show(message, caption, buttons);
+            if (result == DialogResult.Yes)
+            {
+                Negocio.BorrarGuardia(int.Parse(lvGuardias.SelectedItems[0].Tag.ToString()));
+                cargarDatos();
+            }
+        }
+
+        private void cargarGuardia(Guardia guardia)
+        {
+            //Si la guardia ya existe la modifica en la API, si no existe la añade
+            //Actualizar el ListView
+            actualizarRegistro();
         }
     }
 }
