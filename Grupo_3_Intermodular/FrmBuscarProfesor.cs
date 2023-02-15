@@ -12,7 +12,7 @@ namespace Grupo_3_Intermodular
 {
     public partial class FrmBuscarProfesor : Form
     {
-        public int profesorId { get; set; } //Habria que buscar como quitar el set
+        private int profesorId; //Habria que buscar como quitar el set
         public FrmBuscarProfesor()
         {
 
@@ -94,5 +94,7 @@ namespace Grupo_3_Intermodular
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
+
+        public int ProfesorId { get { return profesorId;} }
     }
 }

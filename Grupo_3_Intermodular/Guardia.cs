@@ -9,7 +9,7 @@ namespace Grupo_3_Intermodular
 {
     public class Guardia
     {
-        public int id { get; }
+        public int id { get; set; }
         public string aula { get; set; }
         public int dia_semana { get; set; }
         public Estado estado { get; set; }
@@ -18,8 +18,8 @@ namespace Grupo_3_Intermodular
         public int hora { get; set; }
         public string observaciones { get; set; }
         public Horario horario { get; set; }
-        public int prof_falta { get; set; }
-        public int prof_hace_guardia { get; set; }
+        public Profesor profFalta { get; set; }
+        public Profesor profGuardia { get; set; }
 
     }
 

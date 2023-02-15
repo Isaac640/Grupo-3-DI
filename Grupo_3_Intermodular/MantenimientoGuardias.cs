@@ -24,8 +24,39 @@ namespace Grupo_3_Intermodular
             List<Guardia> guardias = await Negocio.ObtenerGuardias();
             foreach (Guardia x in guardias)
             {
-                //ListViewItem lviGuardia = new ListViewItem();                
-            }            
+                string[] lvItem = new string[5];
+                lvItem[0] = x.fecha.ToString();
+                lvItem[1] = x.hora.ToString();
+                lvItem[2] = x.profFalta.nombre + " " + x.profFalta.ape1 + " " + x.profFalta.ape2;
+                if (x.profGuardia != null)
+                {
+                    lvItem[3] = x.profGuardia.nombre + " " + x.profGuardia.ape1 + " " + x.profGuardia.ape2;
+                }
+                else
+                {
+                    lvItem[3] = "NO HAY";
+                }
+                switch (x.estado)
+                {
+                    case Estado.R:
+                        lvItem[4] = "Realizada";
+                        break;
+                    case Estado.C:
+                        lvItem[4] = "Confirmada";
+                        break;
+                    case Estado.A:
+                        lvItem[4] = "Anulada";
+                        break;
+                }
+
+                ListViewItem lviGuardia = new ListViewItem(lvItem);
+                lviGuardia.Tag = x.id;
+
+                if (x.profGuardia == null) lviGuardia.BackColor = Color.OrangeRed;
+
+                lvGuardias.Items.Add(lviGuardia);
+
+            }
 
             actualizarRegistro();
         }
@@ -41,7 +72,8 @@ namespace Grupo_3_Intermodular
         private void btnFiltrar_Click(object sender, EventArgs e)
         {
             string filtro = txtFiltro.Text;
-            if (string.IsNullOrEmpty(filtro)) {
+            if (string.IsNullOrEmpty(filtro))
+            {
                 lblFiltro.Text = "Sin filtro";
                 actualizarRegistro();
                 return;
@@ -86,6 +118,11 @@ namespace Grupo_3_Intermodular
             eliminarGuardia();
         }
 
+        private void lvGuardias_DoubleClick(object sender, EventArgs e)
+        {
+            modificarGuardia();
+        }
+
         private void crearGuardia()
         {
             Guardia guardia = new Guardia();
@@ -98,11 +135,11 @@ namespace Grupo_3_Intermodular
         private void modificarGuardia()
         {
             ; //Recupero el objeto guardia según el tag y se lo enchufo al propiedades
-            Guardia guardia = Negocio.ObtenerGuardia(int.Parse(lvGuardias.SelectedItems[0].Tag.ToString()));
+            Guardia guardia = Negocio.ObtenerGuardia((int)lvGuardias.SelectedItems[0].Tag);
             FrmGuardia fGuardia = new FrmGuardia(guardia);
             if (fGuardia.ShowDialog() == DialogResult.OK)
             {
-                
+
                 cargarGuardia(fGuardia.guardia);
             }
         }
@@ -127,5 +164,7 @@ namespace Grupo_3_Intermodular
             //Actualizar el ListView
             actualizarRegistro();
         }
+
+        
     }
 }

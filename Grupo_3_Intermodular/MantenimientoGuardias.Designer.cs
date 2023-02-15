@@ -39,12 +39,12 @@
             this.chProfFalta = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chProfSusti = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chEstado = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lblFiltro = new System.Windows.Forms.Label();
-            this.lblRegistros = new System.Windows.Forms.Label();
             this.cmsGuardias = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiNueva = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiEliminar = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiModificar = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiEliminar = new System.Windows.Forms.ToolStripMenuItem();
+            this.lblFiltro = new System.Windows.Forms.Label();
+            this.lblRegistros = new System.Windows.Forms.Label();
             this.cmsGuardias.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -84,6 +84,7 @@
             this.chProfSusti,
             this.chEstado});
             this.lvGuardias.ContextMenuStrip = this.cmsGuardias;
+            this.lvGuardias.FullRowSelect = true;
             this.lvGuardias.GridLines = true;
             this.lvGuardias.HideSelection = false;
             this.lvGuardias.Location = new System.Drawing.Point(12, 49);
@@ -93,16 +94,17 @@
             this.lvGuardias.TabIndex = 3;
             this.lvGuardias.UseCompatibleStateImageBehavior = false;
             this.lvGuardias.View = System.Windows.Forms.View.Details;
+            this.lvGuardias.DoubleClick += new System.EventHandler(this.lvGuardias_DoubleClick);
             // 
             // chFecha
             // 
             this.chFecha.Text = "Fecha";
-            this.chFecha.Width = 160;
+            this.chFecha.Width = 135;
             // 
             // chHora
             // 
             this.chHora.Text = "Hora";
-            this.chHora.Width = 50;
+            this.chHora.Width = 40;
             // 
             // chProfFalta
             // 
@@ -112,12 +114,43 @@
             // chProfSusti
             // 
             this.chProfSusti.Text = "Sustituye";
-            this.chProfSusti.Width = 160;
+            this.chProfSusti.Width = 146;
             // 
             // chEstado
             // 
             this.chEstado.Text = "Estado";
-            this.chEstado.Width = 50;
+            this.chEstado.Width = 115;
+            // 
+            // cmsGuardias
+            // 
+            this.cmsGuardias.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiNueva,
+            this.tsmiModificar,
+            this.tsmiEliminar});
+            this.cmsGuardias.Name = "cmsGuardias";
+            this.cmsGuardias.Size = new System.Drawing.Size(126, 70);
+            this.cmsGuardias.Opening += new System.ComponentModel.CancelEventHandler(this.cmsGuardias_Opening);
+            // 
+            // tsmiNueva
+            // 
+            this.tsmiNueva.Name = "tsmiNueva";
+            this.tsmiNueva.Size = new System.Drawing.Size(125, 22);
+            this.tsmiNueva.Text = "Nueva";
+            this.tsmiNueva.Click += new System.EventHandler(this.tsmiNueva_Click);
+            // 
+            // tsmiModificar
+            // 
+            this.tsmiModificar.Name = "tsmiModificar";
+            this.tsmiModificar.Size = new System.Drawing.Size(125, 22);
+            this.tsmiModificar.Text = "Modificar";
+            this.tsmiModificar.Click += new System.EventHandler(this.tsmiModificar_Click);
+            // 
+            // tsmiEliminar
+            // 
+            this.tsmiEliminar.Name = "tsmiEliminar";
+            this.tsmiEliminar.Size = new System.Drawing.Size(125, 22);
+            this.tsmiEliminar.Text = "Eliminar";
+            this.tsmiEliminar.Click += new System.EventHandler(this.tsmiEliminar_Click);
             // 
             // lblFiltro
             // 
@@ -136,37 +169,6 @@
             this.lblRegistros.Size = new System.Drawing.Size(55, 13);
             this.lblRegistros.TabIndex = 5;
             this.lblRegistros.Text = "6 registros";
-            // 
-            // cmsGuardias
-            // 
-            this.cmsGuardias.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiNueva,
-            this.tsmiModificar,
-            this.tsmiEliminar});
-            this.cmsGuardias.Name = "cmsGuardias";
-            this.cmsGuardias.Size = new System.Drawing.Size(126, 70);
-            this.cmsGuardias.Opening += new System.ComponentModel.CancelEventHandler(this.cmsGuardias_Opening);
-            // 
-            // tsmiNueva
-            // 
-            this.tsmiNueva.Name = "tsmiNueva";
-            this.tsmiNueva.Size = new System.Drawing.Size(180, 22);
-            this.tsmiNueva.Text = "Nueva";
-            this.tsmiNueva.Click += new System.EventHandler(this.tsmiNueva_Click);
-            // 
-            // tsmiEliminar
-            // 
-            this.tsmiEliminar.Name = "tsmiEliminar";
-            this.tsmiEliminar.Size = new System.Drawing.Size(180, 22);
-            this.tsmiEliminar.Text = "Eliminar";
-            this.tsmiEliminar.Click += new System.EventHandler(this.tsmiEliminar_Click);
-            // 
-            // tsmiModificar
-            // 
-            this.tsmiModificar.Name = "tsmiModificar";
-            this.tsmiModificar.Size = new System.Drawing.Size(180, 22);
-            this.tsmiModificar.Text = "Modificar";
-            this.tsmiModificar.Click += new System.EventHandler(this.tsmiModificar_Click);
             // 
             // MantenimientoGuardias
             // 

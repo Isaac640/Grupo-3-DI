@@ -35,7 +35,7 @@ namespace Grupo_3_Intermodular
             FrmBuscarProfesor profAusente = new FrmBuscarProfesor();
             if (profAusente.ShowDialog() == DialogResult.OK)
             {
-                profAus = Negocio.ObtenerProfesor(profAusente.profesorId); //Negocio
+                profAus = Negocio.ObtenerProfesor(profAusente.ProfesorId); //Negocio
                 txtAusente.Text = profAus.nombre + " " + profAus.ape1 + " " + profAus.ape2;
             }
         }
@@ -46,7 +46,7 @@ namespace Grupo_3_Intermodular
             FrmBuscarProfesor profSustituto = new FrmBuscarProfesor();
             if (profSustituto.ShowDialog() == DialogResult.OK)
             {
-                profSus = Negocio.ObtenerProfesor(profSustituto.profesorId); //Negocio
+                profSus = Negocio.ObtenerProfesor(profSustituto.ProfesorId); //Negocio
                 txtSustituto.Text = profSus.nombre + " " + profSus.ape1 + " " + profSus.ape2;
             }
         }
@@ -55,8 +55,8 @@ namespace Grupo_3_Intermodular
         {
             if (comprobarCampos())
             {
-                guardia.prof_falta = profAus.id;
-                guardia.prof_hace_guardia = profSus.id;
+                guardia.profFalta = profAus;
+                guardia.profGuardia = profSus;
                 guardia.fecha = dtpFecha.Value;
                 guardia.hora = int.Parse(cbHoras.SelectedItem.ToString());
                 guardia.aula = cbAula.SelectedItem.ToString();
@@ -119,11 +119,11 @@ namespace Grupo_3_Intermodular
 
         private void rellenarCampos(Guardia guardia)
         {
-            profAus = Negocio.ObtenerProfesor(guardia.prof_falta);
+            profAus = guardia.profFalta;
             txtAusente.Text=profAus.nombre + " " + profAus.ape1 + " " + profAus.ape2;
-            if (guardia.prof_hace_guardia != 0)
+            if (guardia.profGuardia != null)
             {
-                profSus = Negocio.ObtenerProfesor(guardia.prof_hace_guardia);
+                profSus = guardia.profGuardia;
                 txtSustituto.Text = profSus.nombre + " " + profSus.ape1 + " " + profSus.ape2;
             }
             dtpFecha.Value = guardia.fecha;
