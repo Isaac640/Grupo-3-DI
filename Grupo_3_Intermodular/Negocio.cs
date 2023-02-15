@@ -41,9 +41,9 @@ namespace Grupo_3_Intermodular
             profesores.Add(profesor);
         }
 
-        public static Guardia ObtenerGuardia(int id)
+        public async static Task<Guardia> ObtenerGuardia(int id)
         {
-            return guardias.FirstOrDefault(x => x.id == id);
+            return await consumer.GetAsync<Guardia>("/guardia/buscarId?id=" + id);
         }
         public static Profesor ObtenerProfesor(int id)
         {
@@ -59,9 +59,9 @@ namespace Grupo_3_Intermodular
             return profesores;
         }
 
-        public static void BorrarGuardia(int id)
+        public async static void BorrarGuardia(int id)
         {
-            var borrar = ObtenerGuardia(id);
+            var borrar = await ObtenerGuardia(id);
             guardias.Remove(borrar);
         }
         public static void BorrarProfesor(int id)

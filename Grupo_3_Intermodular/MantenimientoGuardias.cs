@@ -132,10 +132,10 @@ namespace Grupo_3_Intermodular
                 cargarGuardia(fGuardia.guardia);
             }
         }
-        private void modificarGuardia()
+        private async void modificarGuardia()
         {
             ; //Recupero el objeto guardia según el tag y se lo enchufo al propiedades
-            Guardia guardia = Negocio.ObtenerGuardia((int)lvGuardias.SelectedItems[0].Tag);
+            Guardia guardia = await Negocio.ObtenerGuardia((int)lvGuardias.SelectedItems[0].Tag);
             FrmGuardia fGuardia = new FrmGuardia(guardia);
             if (fGuardia.ShowDialog() == DialogResult.OK)
             {
