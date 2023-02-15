@@ -19,15 +19,13 @@ namespace Grupo_3_Intermodular
             cargarDatos();
         }
 
-        private void cargarDatos()
+        private async void cargarDatos()
         {
-            //traer datos de la API
-            //Meto esos datos de alguna manera (?) en un array de guardias
-            //foreach (Guardia x in guardias)
-            //{
-                ListViewItem lviGuardia = new ListViewItem();
-                
-            //}
+            List<Guardia> guardias = await Negocio.ObtenerGuardias();
+            foreach (Guardia x in guardias)
+            {
+                //ListViewItem lviGuardia = new ListViewItem();                
+            }            
 
             actualizarRegistro();
         }

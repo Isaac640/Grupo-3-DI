@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Grupo_3_Intermodular
 {
-    internal class Horario
+    public class Horario
     {
         public int id { get;}
         public int profesor { get; }

@@ -9,11 +9,15 @@ namespace Grupo_3_Intermodular
 {
     public class Negocio
     {
+        private static WebConsumer consumer;
+
         private static List<Guardia> guardias;
         private static List<Profesor> profesores;
 
         static Negocio()
         {
+            consumer = new WebConsumer("http://10.0.13.101:8080");
+
             guardias = new List<Guardia>();
             profesores= new List<Profesor>();
 
@@ -63,9 +67,9 @@ namespace Grupo_3_Intermodular
             return profesores.FirstOrDefault(x => x.id == id);
         }
 
-        public static List<Guardia> ObtenerGuardias()
+        public async static Task<List<Guardia>> ObtenerGuardias()
         {
-            return guardias;
+            return await consumer.GetAsync<List<Guardia>>("/guardias/todos");
         }
         public static List<Profesor> ObtenerProfesores()
         {
