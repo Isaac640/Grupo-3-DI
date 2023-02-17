@@ -50,8 +50,8 @@
             this.btnExaminarAusente = new System.Windows.Forms.Button();
             this.btnExaminarSustituto = new System.Windows.Forms.Button();
             this.cbHoras = new System.Windows.Forms.ComboBox();
-            this.cbAula = new System.Windows.Forms.ComboBox();
-            this.cbGrupo = new System.Windows.Forms.ComboBox();
+            this.txtAula = new System.Windows.Forms.TextBox();
+            this.txtGrupo = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -262,57 +262,27 @@
             this.cbHoras.Size = new System.Drawing.Size(140, 21);
             this.cbHoras.TabIndex = 24;
             // 
-            // cbAula
+            // txtAula
             // 
-            this.cbAula.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbAula.FormattingEnabled = true;
-            this.cbAula.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10",
-            "11",
-            "12"});
-            this.cbAula.Location = new System.Drawing.Point(110, 58);
-            this.cbAula.Name = "cbAula";
-            this.cbAula.Size = new System.Drawing.Size(133, 21);
-            this.cbAula.TabIndex = 25;
+            this.txtAula.Location = new System.Drawing.Point(110, 57);
+            this.txtAula.Name = "txtAula";
+            this.txtAula.Size = new System.Drawing.Size(210, 20);
+            this.txtAula.TabIndex = 25;
             // 
-            // cbGrupo
+            // txtGrupo
             // 
-            this.cbGrupo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbGrupo.FormattingEnabled = true;
-            this.cbGrupo.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10",
-            "11",
-            "12"});
-            this.cbGrupo.Location = new System.Drawing.Point(491, 57);
-            this.cbGrupo.Name = "cbGrupo";
-            this.cbGrupo.Size = new System.Drawing.Size(140, 21);
-            this.cbGrupo.TabIndex = 26;
+            this.txtGrupo.Location = new System.Drawing.Point(491, 57);
+            this.txtGrupo.Name = "txtGrupo";
+            this.txtGrupo.Size = new System.Drawing.Size(140, 20);
+            this.txtGrupo.TabIndex = 26;
             // 
             // FrmGuardia
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(749, 279);
-            this.Controls.Add(this.cbGrupo);
-            this.Controls.Add(this.cbAula);
+            this.Controls.Add(this.txtGrupo);
+            this.Controls.Add(this.txtAula);
             this.Controls.Add(this.cbHoras);
             this.Controls.Add(this.btnExaminarSustituto);
             this.Controls.Add(this.btnExaminarAusente);
@@ -366,7 +336,7 @@
         private System.Windows.Forms.Button btnExaminarAusente;
         private System.Windows.Forms.Button btnExaminarSustituto;
         private System.Windows.Forms.ComboBox cbHoras;
-        private System.Windows.Forms.ComboBox cbAula;
-        private System.Windows.Forms.ComboBox cbGrupo;
+        private System.Windows.Forms.TextBox txtAula;
+        private System.Windows.Forms.TextBox txtGrupo;
     }
 }

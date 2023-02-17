@@ -134,7 +134,7 @@ namespace Grupo_3_Intermodular
         }
         private async void modificarGuardia()
         {
-            ; //Recupero el objeto guardia según el tag y se lo enchufo al propiedades
+            //Recupero el objeto guardia según el tag y se lo enchufo al propiedades
             Guardia guardia = await Negocio.ObtenerGuardia((int)lvGuardias.SelectedItems[0].Tag);
             FrmGuardia fGuardia = new FrmGuardia(guardia);
             if (fGuardia.ShowDialog() == DialogResult.OK)
@@ -153,15 +153,15 @@ namespace Grupo_3_Intermodular
             result = MessageBox.Show(message, caption, buttons);
             if (result == DialogResult.Yes)
             {
-                Negocio.BorrarGuardia(int.Parse(lvGuardias.SelectedItems[0].Tag.ToString()));
+                Negocio.BorrarGuardia((int)lvGuardias.SelectedItems[0].Tag);
                 cargarDatos();
             }
         }
 
         private void cargarGuardia(Guardia guardia)
         {
-            //Si la guardia ya existe la modifica en la API, si no existe la añade
-            //Actualizar el ListView
+            Negocio.AnadirGuardia(guardia);
+            
             actualizarRegistro();
         }
 
