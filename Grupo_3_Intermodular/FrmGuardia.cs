@@ -18,7 +18,7 @@ namespace Grupo_3_Intermodular
         public FrmGuardia(Guardia guardia)
         {
             InitializeComponent();
-            if (guardia!=null)
+            if (guardia.id!=0)
             {
                 rellenarCampos(guardia);
             }
@@ -29,24 +29,24 @@ namespace Grupo_3_Intermodular
             this.Close();
         }
 
-        private void btnExaminarAusente_Click(object sender, EventArgs e)
+        private async void btnExaminarAusente_Click(object sender, EventArgs e)
         {
 
             FrmBuscarProfesor profAusente = new FrmBuscarProfesor();
             if (profAusente.ShowDialog() == DialogResult.OK)
             {
-                profAus = Negocio.ObtenerProfesor(profAusente.ProfesorId); //Negocio
+                profAus = await Negocio.ObtenerProfesor(profAusente.ProfesorId); 
                 txtAusente.Text = profAus.nombre + " " + profAus.ape1 + " " + profAus.ape2;
             }
         }
 
-        private void btnExaminarSustituto_Click(object sender, EventArgs e)
+        private async void btnExaminarSustituto_Click(object sender, EventArgs e)
         {
 
             FrmBuscarProfesor profSustituto = new FrmBuscarProfesor();
             if (profSustituto.ShowDialog() == DialogResult.OK)
             {
-                profSus = Negocio.ObtenerProfesor(profSustituto.ProfesorId); //Negocio
+                profSus = await Negocio.ObtenerProfesor(profSustituto.ProfesorId);
                 txtSustituto.Text = profSus.nombre + " " + profSus.ape1 + " " + profSus.ape2;
             }
         }
@@ -59,8 +59,8 @@ namespace Grupo_3_Intermodular
                 guardia.profGuardia = profSus;
                 guardia.fecha = dtpFecha.Value;
                 guardia.hora = int.Parse(cbHoras.SelectedItem.ToString());
-                guardia.aula = cbAula.SelectedItem.ToString();
-                guardia.grupo = cbGrupo.SelectedItem.ToString();
+                guardia.aula = txtAula.Text;
+                guardia.grupo = txtGrupo.Text;
                 guardia.observaciones = txtObservaciones.Text;
                 if (rbtnRealizada.Checked) guardia.estado = Estado.R;
                 if (rbtnConfirmada.Checked) guardia.estado = Estado.C;
@@ -92,15 +92,15 @@ namespace Grupo_3_Intermodular
                 mostrarAviso("Debes escoger una hora");
                 return false;
             }
-            if (cbAula.Text.Equals(String.Empty))
+            if (txtAula.Text.Equals(String.Empty))
             {
-                cbAula.Focus();
+                txtAula.Focus();
                 mostrarAviso("Debes escoger un aula");
                 return false;
             }
-            if (cbGrupo.Text.Equals(String.Empty))
+            if (txtGrupo.Text.Equals(String.Empty))
             {
-                cbGrupo.Focus();
+                txtGrupo.Focus();
                 mostrarAviso("Debes escoger un grupo");
                 return false;
             }
@@ -127,14 +127,14 @@ namespace Grupo_3_Intermodular
                 txtSustituto.Text = profSus.nombre + " " + profSus.ape1 + " " + profSus.ape2;
             }
             dtpFecha.Value = guardia.fecha;
-            cbHoras.SelectedText = guardia.hora.ToString();
+            cbHoras.Text = guardia.hora.ToString();
             if (guardia.aula!=null)
             {
-                cbAula.SelectedText = guardia.aula;
+                txtAula.Text = guardia.aula;
             }
             if (guardia.grupo!=null)
             {
-                cbGrupo.SelectedText = guardia.grupo;
+                txtGrupo.Text = guardia.grupo;
             }
             if (guardia.observaciones!=null)
             {

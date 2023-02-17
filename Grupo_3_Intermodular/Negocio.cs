@@ -11,63 +11,40 @@ namespace Grupo_3_Intermodular
     {
         private static WebConsumer consumer;
 
-        private static List<Guardia> guardias;
-        private static List<Profesor> profesores;
 
         static Negocio()
         {
             consumer = new WebConsumer("http://10.0.13.101:8080");
 
-            guardias = new List<Guardia>();
-            profesores= new List<Profesor>();
-
-        }
-
-        public static void VaciarGuardia()
-        {
-            guardias.Clear();
-        }
-        public static void VaciarProfesores()
-        {
-            profesores.Clear();
         }
 
         public static void AnadirGuardia(Guardia guardia)
         {
-            guardias.Add(guardia);
-        }
-        public static void AnadirProfesor(Profesor profesor)
-        {
-            profesores.Add(profesor);
+            //guardias.Add(guardia);
         }
 
         public async static Task<Guardia> ObtenerGuardia(int id)
         {
             return await consumer.GetAsync<Guardia>("/guardia/buscarId?id=" + id);
         }
-        public static Profesor ObtenerProfesor(int id)
+        public async static Task<Profesor> ObtenerProfesor(int id)
         {
-            return profesores.FirstOrDefault(x => x.id == id);
+            return await consumer.GetAsync<Profesor>("/profesor/buscarId?id=" + id);
         }
 
         public async static Task<List<Guardia>> ObtenerGuardias()
         {
             return await consumer.GetAsync<List<Guardia>>("/guardia");
         }
-        public static List<Profesor> ObtenerProfesores()
+        public async static Task<List<Profesor>> ObtenerProfesores()
         {
-            return profesores;
+            return await consumer.GetAsync<List<Profesor>>("/profesor");
         }
 
         public async static void BorrarGuardia(int id)
         {
             var borrar = await ObtenerGuardia(id);
-            guardias.Remove(borrar);
-        }
-        public static void BorrarProfesor(int id)
-        {
-            var borrar = ObtenerProfesor(id);
-            profesores.Remove(borrar);
+            //guardias.Remove(borrar);
         }
     }
 }

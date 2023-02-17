@@ -25,10 +25,10 @@ namespace Grupo_3_Intermodular
         }
 
 
-        private void btnDni_Click(object sender, EventArgs e)
+        private async void btnDni_Click(object sender, EventArgs e)
         {
             lvProfesores.Items.Clear();
-            foreach (Profesor p in Negocio.ObtenerProfesores())
+            foreach (Profesor p in await Negocio.ObtenerProfesores())
             {
                 if (p.dni.Contains(txtBuscar.Text))
                 {
@@ -45,10 +45,10 @@ namespace Grupo_3_Intermodular
             }
         }
 
-        private void btnNombre_Click(object sender, EventArgs e)
+        private async void btnNombre_Click(object sender, EventArgs e)
         {
             lvProfesores.Items.Clear();
-            foreach (Profesor p in Negocio.ObtenerProfesores())
+            foreach (Profesor p in await Negocio.ObtenerProfesores())
             {
                 if (p.nombre.Contains(txtBuscar.Text) || p.ape1.Contains(txtBuscar.Text) || p.ape2.Contains(txtBuscar.Text))
                 {
