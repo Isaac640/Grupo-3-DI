@@ -9,18 +9,19 @@ namespace Grupo_3_Intermodular
 {
     public class Negocio
     {
+        private static int profesorId;
         private static WebConsumer consumer;
 
 
         static Negocio()
         {
-            consumer = new WebConsumer("http://10.0.13.101:8080");
+            consumer = new WebConsumer("http://localhost:8080");
 
         }
 
-        public static void AnadirGuardia(Guardia guardia)
+        public static async Task<bool> AnadirGuardia(Guardia guardia)
         {
-            //guardias.Add(guardia);
+            return await consumer.PostAsync<bool>("/guardia/add", guardia);
         }
 
         public async static Task<Guardia> ObtenerGuardia(int id)
@@ -41,10 +42,17 @@ namespace Grupo_3_Intermodular
             return await consumer.GetAsync<List<Profesor>>("/profesor");
         }
 
-        public async static void BorrarGuardia(int id)
+        public async static Task<bool> BorrarGuardia(int id)
         {
-            var borrar = await ObtenerGuardia(id);
-            //guardias.Remove(borrar);
+            return await consumer.DeleteAsync<bool>("/guardia/eliminar", id);
+        }
+
+        public async static Task<int> IniciarSesion(string user, string passwd)
+        {
+            int id = await consumer.PostAsync<int>("/login", new Dictionary<string, string>() { { "user", user }, { "passwd", passwd } });
+            profesorId = id;
+
+            return id;
         }
     }
 }
