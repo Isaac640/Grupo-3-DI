@@ -17,7 +17,6 @@ namespace Grupo_3_Intermodular
         /// <summary>
         /// Inicio de sesión del administrador
         /// </summary>
-
         public FrmLogin()
         {
             InitializeComponent();
@@ -30,28 +29,27 @@ namespace Grupo_3_Intermodular
             if (string.IsNullOrEmpty(txtUsuario.Text) || string.IsNullOrEmpty(txtContrasenia.Text))
             {
                 MessageBox.Show("Uno de los campos esta vacío", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
 
-            //encriptar contraseña a MD5
-            EncriptadorMD5(txtContrasenia.Text);
-            //81dc9bdb52d04dc20036dbd8313ed055
-
+            //encriptacion de contraseña a MD5
+            string contraEncr = EncriptadorMD5(txtContrasenia.Text);
             /*Si funciona, verifica que los campos esten rellenados y que el usuario exista
             *Usa la API, avanza al siguiente formulario y cierra la ventana de login.
             *El metodo que hay en Program.cs hace que si hay mas ventanas por aparecer, cierra la ventana y sigue a la siguiente
             *La siguiente ventana sera Mantenimientos de Guardias. SOLO ADMINISTRADORES PUEDEN ACCEDER
             */
 
-            if (await Negocio.InicioSesion(txtUsuario.Text, txtContrasenia.Text) != 0)
+            if (await Negocio.IniciarSesion(txtUsuario.Text, contraEncr) != 0)
             {
+                //Abrimos el formulario de mantenimiento de guardias y cerramos esta ventana
                 MantenimientoGuardias mGuardias = new MantenimientoGuardias();
                 mGuardias.Show();
-
                 this.Close();
             }
             else
             {
-                lblError.Text = "El Usuario o Contraseña son incorrectos";
+                MessageBox.Show("Usuario o contraseña incorrectos", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
 
