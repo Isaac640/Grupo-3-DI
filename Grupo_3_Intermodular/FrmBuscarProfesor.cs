@@ -64,32 +64,8 @@ namespace Grupo_3_Intermodular
             }
         }
 
-        private void cargarProfesores() //Tiene que devolver un array Profesor[]
-        {
-            //localhost/api/profesores : Profesor[]
-            //localhost/api/profesor/dni/722 : Profesor
-            //localhost/api/profesor/nombre/Manolo : Profesor
-
-            //Profesor p;
-            //List<Profesor> profesores;
-            //Query pidiendo Id, DNI, Nombre, Apellido 1 y Apellido 2
-            //for("yo que se bro, lo que salga de la query")
-            //{
-            //  p.Id = x.id;
-            //  p.DNI = x.DNI
-            //  p.Nombre = x.Nombre;
-            //  p.Apellido1 = x.Apellido1;
-            //  p.Apellido2 = x.Apellido2;
-            //
-            //  profesores.add(p)
-            //}
-            //
-            //return profesores;
-        }
-
         private void lvProfesores_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            //prof =//localhost/api/profesor/id/( lvProfesores.SelectedItems[0].Tag.ToString() ) : Profesor
             profesorId = int.Parse(lvProfesores.SelectedItems[0].Tag.ToString());
             this.DialogResult = DialogResult.OK;
             this.Close();

@@ -22,43 +22,87 @@ namespace Grupo_3_Intermodular
         private async void cargarDatos()
         {
             List<Guardia> guardias = await Negocio.ObtenerGuardias();
+            if (txtFiltro.Text.Equals(string.Empty))
+            {
+                foreach (Guardia x in guardias)
+                {
+                    string[] lvItem = new string[5];
+                    lvItem[0] = x.fecha.ToString();
+                    lvItem[1] = x.hora.ToString();
+                    lvItem[2] = x.profFalta.nombre + " " + x.profFalta.ape1 + " " + x.profFalta.ape2;
+                    if (x.profGuardia != null)
+                    {
+                        lvItem[3] = x.profGuardia.nombre + " " + x.profGuardia.ape1 + " " + x.profGuardia.ape2;
+                    }
+                    else
+                    {
+                        lvItem[3] = "NO HAY";
+                    }
+                    switch (x.estado)
+                    {
+                        case Estado.R:
+                            lvItem[4] = "Realizada";
+                            break;
+                        case Estado.C:
+                            lvItem[4] = "Confirmada";
+                            break;
+                        case Estado.A:
+                            lvItem[4] = "Anulada";
+                            break;
+                    }
+
+                    ListViewItem lviGuardia = new ListViewItem(lvItem);
+                    lviGuardia.Tag = x.id;
+
+                    if (x.profGuardia == null) lviGuardia.BackColor = Color.OrangeRed;
+
+                    lvGuardias.Items.Add(lviGuardia);
+
+                }
+                actualizarRegistro();
+                return;
+            }
             foreach (Guardia x in guardias)
             {
-                string[] lvItem = new string[5];
-                lvItem[0] = x.fecha.ToString();
-                lvItem[1] = x.hora.ToString();
-                lvItem[2] = x.profFalta.nombre + " " + x.profFalta.ape1 + " " + x.profFalta.ape2;
-                if (x.profGuardia != null)
+                if (x.profFalta.nombre.ToLower().Contains(txtFiltro.Text.ToLower()) 
+                    || x.profFalta.ape1.ToLower().Contains(txtFiltro.Text.ToLower()) 
+                    || x.profFalta.ape2.ToLower().Contains(txtFiltro.Text.ToLower()))
                 {
-                    lvItem[3] = x.profGuardia.nombre + " " + x.profGuardia.ape1 + " " + x.profGuardia.ape2;
+                    string[] lvItem = new string[5];
+                    lvItem[0] = x.fecha.ToString();
+                    lvItem[1] = x.hora.ToString();
+                    lvItem[2] = x.profFalta.nombre + " " + x.profFalta.ape1 + " " + x.profFalta.ape2;
+                    if (x.profGuardia != null)
+                    {
+                        lvItem[3] = x.profGuardia.nombre + " " + x.profGuardia.ape1 + " " + x.profGuardia.ape2;
+                    }
+                    else
+                    {
+                        lvItem[3] = "NO HAY";
+                    }
+                    switch (x.estado)
+                    {
+                        case Estado.R:
+                            lvItem[4] = "Realizada";
+                            break;
+                        case Estado.C:
+                            lvItem[4] = "Confirmada";
+                            break;
+                        case Estado.A:
+                            lvItem[4] = "Anulada";
+                            break;
+                    }
+
+                    ListViewItem lviGuardia = new ListViewItem(lvItem);
+                    lviGuardia.Tag = x.id;
+
+                    if (x.profGuardia == null) lviGuardia.BackColor = Color.OrangeRed;
+
+                    lvGuardias.Items.Add(lviGuardia);
+
                 }
-                else
-                {
-                    lvItem[3] = "NO HAY";
-                }
-                switch (x.estado)
-                {
-                    case Estado.R:
-                        lvItem[4] = "Realizada";
-                        break;
-                    case Estado.C:
-                        lvItem[4] = "Confirmada";
-                        break;
-                    case Estado.A:
-                        lvItem[4] = "Anulada";
-                        break;
-                }
-
-                ListViewItem lviGuardia = new ListViewItem(lvItem);
-                lviGuardia.Tag = x.id;
-
-                if (x.profGuardia == null) lviGuardia.BackColor = Color.OrangeRed;
-
-                lvGuardias.Items.Add(lviGuardia);
-
+                actualizarRegistro();
             }
-
-            actualizarRegistro();
         }
 
         private void actualizarRegistro()
@@ -71,19 +115,14 @@ namespace Grupo_3_Intermodular
 
         private void btnFiltrar_Click(object sender, EventArgs e)
         {
-            string filtro = txtFiltro.Text;
-            if (string.IsNullOrEmpty(filtro))
+            filtrar();
+        }
+        private void txtFiltro_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == ((char)Keys.Enter))
             {
-                lblFiltro.Text = "Sin filtro";
-                actualizarRegistro();
-                return;
+                filtrar();
             }
-
-            lblFiltro.Text = $"Filtrado por {filtro}";
-            actualizarRegistro();
-
-
-            return;
         }
 
         private void btnNueva_Click(object sender, EventArgs e)
@@ -129,12 +168,12 @@ namespace Grupo_3_Intermodular
             FrmGuardia fGuardia = new FrmGuardia(guardia);
             if (fGuardia.ShowDialog() == DialogResult.OK)
             {
+                fGuardia.guardia.horario = null; //Esto es porque si no casca
                 cargarGuardia(fGuardia.guardia);
             }
         }
         private async void modificarGuardia()
         {
-            //Recupero el objeto guardia según el tag y se lo enchufo al propiedades
             Guardia guardia = await Negocio.ObtenerGuardia((int)lvGuardias.SelectedItems[0].Tag);
             FrmGuardia fGuardia = new FrmGuardia(guardia);
             if (fGuardia.ShowDialog() == DialogResult.OK)
@@ -143,7 +182,7 @@ namespace Grupo_3_Intermodular
                 cargarGuardia(fGuardia.guardia);
             }
         }
-        private void eliminarGuardia()
+        private async void eliminarGuardia()
         {
             string message = "¿Desea eliminar la guardia?";
             string caption = "Eliminar guardia";
@@ -153,18 +192,36 @@ namespace Grupo_3_Intermodular
             result = MessageBox.Show(message, caption, buttons);
             if (result == DialogResult.Yes)
             {
-                Negocio.BorrarGuardia((int)lvGuardias.SelectedItems[0].Tag);
-                cargarDatos();
+                if (await Negocio.BorrarGuardia((int)lvGuardias.SelectedItems[0].Tag))
+                {
+                    cargarDatos();
+                }
             }
         }
 
-        private void cargarGuardia(Guardia guardia)
+        private async void cargarGuardia(Guardia guardia)
         {
-            Negocio.AnadirGuardia(guardia);
-            
-            actualizarRegistro();
+            if (await Negocio.AnadirGuardia(guardia))
+            {
+                cargarDatos();
+                actualizarRegistro();
+            }
         }
 
-        
+        private void filtrar()
+        {
+            string filtro = txtFiltro.Text;
+            if (string.IsNullOrEmpty(filtro))
+            {
+                lblFiltro.Text = "Sin filtro";
+                cargarDatos();
+                actualizarRegistro();
+                return;
+            }
+            lvGuardias.Items.Clear();
+            cargarDatos();
+            lblFiltro.Text = $"Filtrado por {filtro}";
+            return;
+        }
     }
 }

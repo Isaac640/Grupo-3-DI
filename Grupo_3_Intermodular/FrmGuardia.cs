@@ -18,6 +18,7 @@ namespace Grupo_3_Intermodular
         public FrmGuardia(Guardia guardia)
         {
             InitializeComponent();
+            this.guardia = guardia;
             if (guardia.id!=0)
             {
                 rellenarCampos(guardia);

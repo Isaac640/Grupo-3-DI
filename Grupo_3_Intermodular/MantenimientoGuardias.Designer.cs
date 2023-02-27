@@ -54,6 +54,7 @@
             this.txtFiltro.Name = "txtFiltro";
             this.txtFiltro.Size = new System.Drawing.Size(379, 20);
             this.txtFiltro.TabIndex = 0;
+            this.txtFiltro.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFiltro_KeyPress);
             // 
             // btnFiltrar
             // 

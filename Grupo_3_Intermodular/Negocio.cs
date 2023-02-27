@@ -15,7 +15,7 @@ namespace Grupo_3_Intermodular
 
         static Negocio()
         {
-            consumer = new WebConsumer("http://localhost:8080");
+            consumer = new WebConsumer("http://10.0.13.101:8080"); //Modificar según la ip de la API
 
         }
 
@@ -41,13 +41,12 @@ namespace Grupo_3_Intermodular
         {
             return await consumer.GetAsync<List<Profesor>>("/profesor");
         }
-
         public async static Task<bool> BorrarGuardia(int id)
         {
             return await consumer.DeleteAsync<bool>("/guardia/eliminar", id);
         }
 
-        public async static Task<int> IniciarSesion(string user, string passwd)
+        public async static Task<int> InicioSesion(string user, string passwd)
         {
             int id = await consumer.PostAsync<int>("/login", new Dictionary<string, string>() { { "user", user }, { "passwd", passwd } });
             profesorId = id;
