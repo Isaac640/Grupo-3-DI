@@ -155,7 +155,7 @@ si filtramos por nombre, realizará una busqueda de todas las guardias las cuale
 
 
 [login]: imagenesManual/Login.png "Ventana de Login"
-[mantenimientoG]: imagenesManual/Mantenimiento_guardias.png "Ventana de Mantenimiento de guardias"
+[mantenimientoG]: imagenesManual/Mantenimiento_Guardias.png "Ventana de Mantenimiento de guardias"
 [CMmantenimientoG]: imagenesManual/ContextMNuevo.png "ContextMenu de Mantenimiento de guardias"
 
 [CrearGuardia]: imagenesManual/Nueva_Guardia.png "Ventana de Nueva guardia"
