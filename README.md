@@ -1,10 +1,5 @@
-# **MANUAL DE USUARIO**
-
-# **ÍNDICE DE CONTENIDOS**
-
-***INDICE DE CONTENIDOS***
-- [**MANUAL DE USUARIO**](#manual-de-usuario)
-- [**ÍNDICE DE CONTENIDOS**](#índice-de-contenidos)
+# **ÍNDICE**
+- [**ÍNDICE**](#índice)
 - [**INTRODUCCIÓN**](#introducción)
 - [**APLICACIÓN DE ESCRITORIO**](#aplicación-de-escritorio)
   - [**LOGIN**](#login)
@@ -21,8 +16,6 @@ La aplicación trata de la administración de guardias de profesores por parte d
 recuerde que solo los usuarios que son de la administración pueden acceder a la aplicación.
 
 Ningún otro usuario como un profesor puede acceder
-
-Tambien Dispone de una plicación móvil para realizar las mismas operaciones que en la aplicación de escritorio
 
 ---
 
