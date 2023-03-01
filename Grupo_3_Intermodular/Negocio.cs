@@ -26,11 +26,11 @@ namespace Grupo_3_Intermodular
 
         public async static Task<Guardia> ObtenerGuardia(int id)
         {
-            return await consumer.GetAsync<Guardia>("/guardia/buscarId?id=" + id);
+            return await consumer.GetAsync<Guardia>("/guardia/buscar?id=" + id);
         }
         public async static Task<Profesor> ObtenerProfesor(int id)
         {
-            return await consumer.GetAsync<Profesor>("/profesor/buscarId?id=" + id);
+            return await consumer.GetAsync<Profesor>("/profesor/buscar?id=" + id);
         }
 
         public async static Task<List<Guardia>> ObtenerGuardias()
@@ -46,7 +46,11 @@ namespace Grupo_3_Intermodular
             return await consumer.DeleteAsync<bool>("/guardia/eliminar", id);
         }
 
-        public async static Task<int> InicioSesion(string user, string passwd)
+        public async static Task<bool> ActualizarGuardia(Guardia guardia)
+        {
+            return await consumer.PostAsync<bool>("/guardia/actualizar", guardia);
+        }
+        public async static Task<int> IniciarSesion(string user, string passwd)
         {
             int id = await consumer.PostAsync<int>("/login", new Dictionary<string, string>() { { "user", user }, { "passwd", passwd } });
             profesorId = id;

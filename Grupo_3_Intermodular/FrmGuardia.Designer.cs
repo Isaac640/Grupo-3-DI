@@ -307,7 +307,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmGuardia";
-            this.Text = "Modificar guardia";
+            this.Text = "Guardia";
             this.ResumeLayout(false);
             this.PerformLayout();
 

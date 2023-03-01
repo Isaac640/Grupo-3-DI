@@ -21,6 +21,7 @@ namespace Grupo_3_Intermodular
 
         private async void cargarDatos()
         {
+            lvGuardias.Items.Clear();
             List<Guardia> guardias = await Negocio.ObtenerGuardias();
             if (txtFiltro.Text.Equals(string.Empty))
             {
@@ -64,8 +65,8 @@ namespace Grupo_3_Intermodular
             }
             foreach (Guardia x in guardias)
             {
-                if (x.profFalta.nombre.ToLower().Contains(txtFiltro.Text.ToLower()) 
-                    || x.profFalta.ape1.ToLower().Contains(txtFiltro.Text.ToLower()) 
+                if (x.profFalta.nombre.ToLower().Contains(txtFiltro.Text.ToLower())
+                    || x.profFalta.ape1.ToLower().Contains(txtFiltro.Text.ToLower())
                     || x.profFalta.ape2.ToLower().Contains(txtFiltro.Text.ToLower()))
                 {
                     string[] lvItem = new string[5];
@@ -168,7 +169,6 @@ namespace Grupo_3_Intermodular
             FrmGuardia fGuardia = new FrmGuardia(guardia);
             if (fGuardia.ShowDialog() == DialogResult.OK)
             {
-                fGuardia.guardia.horario = null; //Esto es porque si no casca
                 cargarGuardia(fGuardia.guardia);
             }
         }
@@ -178,9 +178,27 @@ namespace Grupo_3_Intermodular
             FrmGuardia fGuardia = new FrmGuardia(guardia);
             if (fGuardia.ShowDialog() == DialogResult.OK)
             {
+                string message;
+                string caption;
+                MessageBoxButtons buttons;
+                if (await Negocio.ActualizarGuardia(fGuardia.guardia))
+                {
+                    message = "La guardia se ha modificado";
+                    caption = "Guardia modificada";
+                    buttons = MessageBoxButtons.OK;
+                    MessageBox.Show(message, caption, buttons);
 
-                cargarGuardia(fGuardia.guardia);
+                    cargarDatos();
+                    return;
+                }
+
+                message = "La guardia no se ha modificado";
+                caption = "Guardia no modificada";
+                buttons = MessageBoxButtons.OK;
+
+                MessageBox.Show(message, caption, buttons);
             }
+
         }
         private async void eliminarGuardia()
         {

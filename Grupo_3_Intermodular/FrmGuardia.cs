@@ -38,6 +38,7 @@ namespace Grupo_3_Intermodular
             {
                 profAus = await Negocio.ObtenerProfesor(profAusente.ProfesorId); 
                 txtAusente.Text = profAus.nombre + " " + profAus.ape1 + " " + profAus.ape2;
+                
             }
         }
 
@@ -56,6 +57,7 @@ namespace Grupo_3_Intermodular
         {
             if (comprobarCampos())
             {
+
                 guardia.profFalta = profAus;
                 guardia.profGuardia = profSus;
                 guardia.fecha = dtpFecha.Value;
@@ -67,6 +69,9 @@ namespace Grupo_3_Intermodular
                 if (rbtnConfirmada.Checked) guardia.estado = Estado.C;
                 if (rbtnAnulada.Checked) guardia.estado = Estado.A;
                 this.DialogResult = DialogResult.OK;
+                
+                guardia.horario = null;
+
                 this.Close();
             }
         }
