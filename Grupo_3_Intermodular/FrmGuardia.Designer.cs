@@ -157,13 +157,13 @@
             this.rbtnRealizada.Name = "rbtnRealizada";
             this.rbtnRealizada.Size = new System.Drawing.Size(72, 17);
             this.rbtnRealizada.TabIndex = 15;
-            this.rbtnRealizada.TabStop = true;
             this.rbtnRealizada.Text = "Realizada";
             this.rbtnRealizada.UseVisualStyleBackColor = true;
             // 
             // rbtnConfirmada
             // 
             this.rbtnConfirmada.AutoSize = true;
+            this.rbtnConfirmada.Checked = true;
             this.rbtnConfirmada.Location = new System.Drawing.Point(491, 140);
             this.rbtnConfirmada.Name = "rbtnConfirmada";
             this.rbtnConfirmada.Size = new System.Drawing.Size(136, 17);
@@ -179,7 +179,6 @@
             this.rbtnAnulada.Name = "rbtnAnulada";
             this.rbtnAnulada.Size = new System.Drawing.Size(64, 17);
             this.rbtnAnulada.TabIndex = 17;
-            this.rbtnAnulada.TabStop = true;
             this.rbtnAnulada.Text = "Anulada";
             this.rbtnAnulada.UseVisualStyleBackColor = true;
             // 
@@ -199,6 +198,7 @@
             this.btnAutorrellenar.TabIndex = 19;
             this.btnAutorrellenar.Text = "Autorrellenar";
             this.btnAutorrellenar.UseVisualStyleBackColor = true;
+            this.btnAutorrellenar.Click += new System.EventHandler(this.btnAutorrellenar_Click);
             // 
             // btnGuardar
             // 

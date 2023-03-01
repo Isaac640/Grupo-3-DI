@@ -50,6 +50,11 @@ namespace Grupo_3_Intermodular
         {
             return await consumer.PostAsync<bool>("/guardia/actualizar", guardia);
         }
+
+        public async static Task<String[]> AutoRellenar(int id,int dia,int hora)
+        {
+            return await consumer.GetAsync<String[]>("/horario/autorrellenar?id=" + id + "&dia=" + dia + "&hora=" + hora);
+        }
         public async static Task<int> IniciarSesion(string user, string passwd)
         {
             int id = await consumer.PostAsync<int>("/login", new Dictionary<string, string>() { { "user", user }, { "passwd", passwd } });

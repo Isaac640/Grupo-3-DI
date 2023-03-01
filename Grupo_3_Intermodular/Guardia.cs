@@ -25,8 +25,8 @@ namespace Grupo_3_Intermodular
 
     public enum Estado
     {
-        R,
-        C,
-        A
+        R=1,
+        C=2,
+        A=3
     }
 }

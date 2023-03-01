@@ -75,7 +75,15 @@ namespace Grupo_3_Intermodular
                 this.Close();
             }
         }
-
+        private async void btnAutorrellenar_Click(object sender, EventArgs e)
+        {
+            if (!txtAusente.Text.Equals(String.Empty) && !cbHoras.Text.Equals(String.Empty))
+            {
+                String[] horario = await Negocio.AutoRellenar(profAus.id,(int)dtpFecha.Value.DayOfWeek,cbHoras.SelectedIndex+1);
+                txtAula.Text = horario[0];
+                txtGrupo.Text = horario[1];
+            }
+        }
 
 
         private bool comprobarCampos()
@@ -160,5 +168,6 @@ namespace Grupo_3_Intermodular
             }
         }
 
+        
     }
 }
