@@ -1,5 +1,4 @@
 # **ÍNDICE**
-- [**ÍNDICE**](#índice)
 - [**INTRODUCCIÓN**](#introducción)
 - [**APLICACIÓN DE ESCRITORIO**](#aplicación-de-escritorio)
   - [**LOGIN**](#login)
